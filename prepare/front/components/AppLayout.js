@@ -1,16 +1,16 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-// const AppLayout = ({childern}) => {
-//     return (
-//         <div>
-//             <div>공통</div>
-//             {childern}
-//         </div>
-//     );
-// };
+const AppLayout = ({ children }) => {
+    return (
+        <div>
+            <div>공통</div>
+            {children}
+        </div>
+    );
+};
 
-// AppLayout.propTypes = {
-//     childern: PropTypes.node.isRequired,
-// };
+AppLayout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
-// export default AppLayout;
+export default AppLayout;

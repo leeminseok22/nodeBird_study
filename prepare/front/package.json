@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "lint": "eslint --ext .js"
+        "lint": "eslint --ext .js",
+        "format": "prettier --check --ignore-path"
     },
     "keywords": [],
     "author": "leeminseok22",
