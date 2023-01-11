@@ -1,6 +1,16 @@
+import Head from "next/head";
+import AppLayout from "../components/AppLayout";
+
 const Profile = () => {
     return (
-        <div>profile</div>
-    )
-}
+        <>
+            <Head>
+                <title>my profile| NodeBird</title>
+            </Head>
+            <AppLayout>
+                <div>profile</div>;
+            </AppLayout>
+        </>
+    );
+};
 export default Profile;
