@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { Menu, Input, Row, Col } from "antd";
+import { Menu, Input,Row,Col } from "antd";
 import { useState } from "react";
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
@@ -9,7 +9,7 @@ const SearchInput = styled(Input.Search)`
     vertical-align: middle;
 `;
 
-const AppLayout = ({ children }) => {
+const AppLayout = () => {
     const [isLogin, setIsLogin] = useState(false);
 
     return (
@@ -37,12 +37,21 @@ const AppLayout = ({ children }) => {
                     </Menu.Item>
                 </Menu>
             </div>
+            <Row gutter={8}>
+                <Col xs={24} md={6}>
             {isLogin ? (
                 <UserProfile setIsLogin={setIsLogin} />
             ) : (
                 <LoginForm setIsLogin={setIsLogin} />
             )}
-            {children}
+            </Col>
+            <Col xs={24} md={6}>
+
+            </Col>
+            <Col xs={24} md={6}>
+                <a href="https://velog.io/@lee222" target="_blank" rel="notreferrer noopenner">Made by Me</a>
+</Col>
+            </Row>
         </>
     );
 };

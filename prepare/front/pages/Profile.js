@@ -1,16 +1,21 @@
-import Head from "next/head";
-import AppLayout from "../components/AppLayout";
+import React from 'react';
+
+import AppLayout from '../components/AppLayout';
+import NicknameEditForm from '../components/NicknameEditForm';
+import FollowList from '../components/FollowList';
 
 const Profile = () => {
-    return (
-        <>
-            <Head>
-                <title>my profile| NodeBird</title>
-            </Head>
-            <AppLayout>
-                <div>profile</div>;
-            </AppLayout>
-        </>
-    );
+  const followerList = [{nickname: 'zero'},{nickname: 'one'},{nickname: 'two'}];
+  const followingList = [{nickname: 'zero'},{nickname: 'one'},{nickname: 'two'}];
+  return (
+  <>
+    <AppLayout>
+      <NicknameEditForm/>
+      <FollowList header="following" data={followingList} />
+      <FollowList header="follower" data={followerList} />
+    </AppLayout>
+  </>
+  )
 };
+
 export default Profile;

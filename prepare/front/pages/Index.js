@@ -1,16 +1,14 @@
-import AppLayout from "../components/AppLayout";
-import Head from "next/head";
-const Home = () => {
-    return (
-        <>
-            <Head>
-                <title>home| nodeBird</title>
-            </Head>
-            <AppLayout>
-                <div>hello</div>
-            </AppLayout>
-        </>
-    );
-};
+import React from 'react';
+import Head from 'next/head';
+import AppLayout from '../components/AppLayout';
+
+const Home = () => (
+  <AppLayout>
+    <Head>
+      <title>NodeBird</title>
+    </Head>
+    <div>Hello, Next!</div>
+  </AppLayout>
+);
 
 export default Home;

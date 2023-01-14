@@ -4,7 +4,7 @@ const App = ({ Component }) => {
     return <Component />;
 };
 
-App.PropTypes = {
+App.propTypes = {
     Component: PropTypes.elementType.isRequired,
 };
 

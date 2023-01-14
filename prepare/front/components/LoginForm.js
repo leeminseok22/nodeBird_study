@@ -1,28 +1,14 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback } from "react";
 import { Input, Form, Button } from "antd";
 import Link from "next/link";
-import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
-const BtnWrapper = styled.div`
-    margin-top: 10px;
-`;
 
-const FormWrapper = styled(Form)`
-    padding: 5px;
-`;
+
 
 const LoginForm = ({ setIsLogin }) => {
-    const [id, setId] = useState("");
-    const [password, setPassword] = useState("");
-
-    const onChangeId = useCallback((e) => {
-        setId(e.target.value);
-    }, []);
-    const onChangePassword = useCallback((e) => {
-        setPassword(e.target.value);
-    }, []);
-
-    const style = useMemo(() => ({ marginTop: 10 }), []);
+    const [id, onChangeId] = useInput('');
+    const [password, onChangePassword] = useInput('');
 
     const onSubmitForm = useCallback(() => {
         console.log(id, password);
@@ -30,7 +16,7 @@ const LoginForm = ({ setIsLogin }) => {
     }, [id, password]);
 
     return (
-        <FormWrapper onFinish={onSubmitForm}>
+        <Form style={{padding: '10px'}} onFinish={onSubmitForm}>
             <div>
                 <lable htmlFor="user-id">id</lable>
                 <br />
@@ -42,7 +28,7 @@ const LoginForm = ({ setIsLogin }) => {
                 ></Input>
             </div>
             <div>
-                <lable htmlFor="user-password">id</lable>
+                <lable htmlFor="user-password">pw</lable>
                 <br />
                 <Input
                     name="user-password"
@@ -51,15 +37,19 @@ const LoginForm = ({ setIsLogin }) => {
                     required
                 ></Input>
             </div>
-            <div>
-                <BtnWrapper style={style}>
+            <div style={{marginTop: '10px'}}>
+
                     <Button type="primary" htmlType="submit" loading={false}>
                         login
                     </Button>
-                    <Button>signUp</Button>
-                </BtnWrapper>
+                    <Link href="/signup">
+                        <a href="/signup">
+                            <Button>signUp</Button>
+                        </a>
+                    </Link>
+                
             </div>
-        </FormWrapper>
+        </Form>
     );
 };
 
