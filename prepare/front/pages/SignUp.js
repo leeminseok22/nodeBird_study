@@ -1,4 +1,4 @@
-import Head from "next/head";
+
 import AppLayout from "../components/AppLayout";
 import {Form, Input, Checkbox, Button} from 'antd';
 import { useCallback, useState} from "react";
@@ -16,7 +16,7 @@ const TextInput = ({ value }) => {
   };
 
 const SignUp = () => {
-    const [pwCheck,setPwCheck] = useState(false);
+    const [pwCheck,setPwCheck] = useState('');
     const [pwError,setPwError] = useState(false);
     const [term,setTerm] = useState(false);
     const [termError,setTermError] = useState(false);
@@ -26,24 +26,24 @@ const SignUp = () => {
     const [nick,onChangeNick] = useInput('');
 
     const onChangePwCheck = useCallback((e) => {
-    setPwError(e.target.value !== password);
+    setPwError(e.target.value !== pw);
     setPwCheck(e.target.value);
-  }, [pw]);
+    }, [pw]);
 
     const onChangeTerm = useCallback((e)=>{
         setTermError(false);
         setTerm(e.target.checked);
-      }, []);
+    }, []);
  
     const onSubmit = useCallback(()=>{
         if(pw !== pwCheck) return setPwError(true);
         if(!term) return setTermError(true);
-    },[id,pw,nick])
+        console.log(id,pw,pwCheck,term,nick)
+    },[pw,pwCheck,term])
     return (
         <>
         <AppLayout>
-
-            <Form onFinsih={onSubmit}>
+            <Form onFinish={onSubmit} style={{padding: 10}}>
                 <TextInput value="135135" />    
                 <div>
                     <label htmlFor="user-id">id</label>

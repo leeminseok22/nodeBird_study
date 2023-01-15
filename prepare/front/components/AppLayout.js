@@ -9,7 +9,7 @@ const SearchInput = styled(Input.Search)`
     vertical-align: middle;
 `;
 
-const AppLayout = () => {
+const AppLayout = ({children}) => {
     const [isLogin, setIsLogin] = useState(false);
 
     return (
@@ -46,7 +46,7 @@ const AppLayout = () => {
             )}
             </Col>
             <Col xs={24} md={6}>
-
+                {children}
             </Col>
             <Col xs={24} md={6}>
                 <a href="https://velog.io/@lee222" target="_blank" rel="notreferrer noopenner">Made by Me</a>
