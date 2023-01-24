@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {
         charset: 'utf8mb4',
-        collate: 'utf8_generic_ci',
+        collate: 'utf8mb4_general_ci',
     })
     Image.associate = (db) => {
-        db.belongsTo(db.Post);
+        db.Image.belongsTo(db.Post);
     };
     return Image;
 }
