@@ -5,6 +5,17 @@ const app = express();
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
+const cors = require('cors');
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}))
+app.use(cors({
+    origin: 'http://localhost:3060',
+    credentials: true,
+  }));
+
+
 
 db.sequelize.sync()
     .then(()=>{
@@ -20,7 +31,7 @@ app.get('/',(req,res)=>{
 
 app.use('/post', postRouter);
 
-app.use('/', userRouter);
+app.use('/user', userRouter);
 
 app.listen(3065, ()=>{
     console.log('run run');

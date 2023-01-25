@@ -4,6 +4,7 @@ import {Form, Input, Checkbox, Button} from 'antd';
 import { useCallback, useState} from "react";
 import useInput from '../hooks/useInput';
 import PropTypes from "prop-types";
+import axios from 'axios';
 
 const TextInput = ({ value }) => {
     return (
@@ -39,6 +40,21 @@ const SignUp = () => {
         if(pw !== pwCheck) return setPwError(true);
         if(!term) return setTermError(true);
         console.log(id,pw,pwCheck,term,nick)
+        axios({
+            method: 'post',
+            url: 'http://localhost:3065/user',
+            data: {
+                email: id,
+                password: pw,
+                nickname: nick,
+            }
+        })
+        .then((res)=>{
+            console.log('post success')
+            console.log(res);
+        })
+        .catch(console.error)
+            
     },[pw,pwCheck,term])
     return (
         <>

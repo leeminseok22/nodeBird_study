@@ -12,6 +12,10 @@ db.Post = require('./post')(sequelize, Sequelize);
 db.User = require('./user')(sequelize, Sequelize);
 
 
+// Object.keys(db).forEach(modelName => {
+//   db[modelName].init(sequelize);
+// });
+
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
