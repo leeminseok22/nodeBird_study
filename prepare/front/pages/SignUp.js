@@ -35,12 +35,25 @@ const SignUp = () => {
         setTermError(false);
         setTerm(e.target.checked);
     }, []);
+
+    const getUser = useCallback(async () => {
+        await axios({
+            method: 'get',
+            url: 'http://localhost:3065/user',
+            
+        })
+        .then((res)=>{
+            console.log('get success')
+            console.log(res);
+        })
+        .catch(console.error)
+    });
  
-    const onSubmit = useCallback(()=>{
+    const onSubmit = useCallback(async ()=>{
         if(pw !== pwCheck) return setPwError(true);
         if(!term) return setTermError(true);
         console.log(id,pw,pwCheck,term,nick)
-        axios({
+        await axios({
             method: 'post',
             url: 'http://localhost:3065/user',
             data: {
@@ -94,6 +107,9 @@ const SignUp = () => {
                 </div>
                 <div>
                     <Button type="primary" htmlType="submit">join</Button>
+                </div>
+                <div>
+                    <Button type="primary" onClick={()=>getUser()}>test</Button>
                 </div>
             </Form>
             </AppLayout>

@@ -6,6 +6,17 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
+router.get('/', async (req, res, next)=>{
+    try {
+        const userList = await User.findAll({
+            attributes: ['nickname', 'email', 'password'],
+        })
+        res.status(201).send(userList);
+    } catch(error) {
+        console.log(error);
+    }
+})
+
 router.post('/', async (req, res, next)=>{
     try {
         const exUser = await User.findOne({
@@ -22,7 +33,7 @@ router.post('/', async (req, res, next)=>{
             nickname: req.body.nickname,
             password: hashedPassword,
     })
-    res.status(201).send('ok')
+    res.status(201).send(req.body)
     } catch (error) {
         console.error(error);
         next(error);

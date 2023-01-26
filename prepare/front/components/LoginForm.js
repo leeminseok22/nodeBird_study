@@ -15,6 +15,8 @@ const LoginForm = ({ setIsLogin }) => {
         setIsLogin(true);
     }, [id, password]);
 
+    
+
     return (
         <Form style={{padding: '10px'}} onFinish={onSubmitForm}>
             <div>
