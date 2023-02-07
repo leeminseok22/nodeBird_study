@@ -17,10 +17,15 @@ app.use(express.urlencoded({ extended: true}))
 app.use(cors());
 
 
-db.sequelize.sync()
-    .then(()=>{
-        console.log('db connect')
+db.sequelize.sync(
+    // { force: true }
+    )
+    .then(() => {
+      console.log("Drop and re-sync db.");
     })
+    // .then(()=>{
+    //     console.log('db connect')
+    // })
     .catch((e)=>{
         console.log('error', e)
     })

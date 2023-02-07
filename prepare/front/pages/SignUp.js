@@ -25,6 +25,8 @@ const SignUp = () => {
     const [id,onChangeId] = useInput('');
     const [pw,onChangePw] = useInput('');
     const [nick,onChangeNick] = useInput('');
+    const [pn,onChangePn] = useInput();
+    
 
     const onChangePwCheck = useCallback((e) => {
     setPwError(e.target.value !== pw);
@@ -48,6 +50,22 @@ const SignUp = () => {
         })
         .catch(console.error)
     });
+
+    const loginUser = useCallback(async () => {
+        await axios({
+            method: 'post',
+            url: 'http://localhost:3065/user/login',
+            data: {
+                userid: id,
+                password: pw,
+            }
+        })
+        .then((res)=>{
+            console.log('get success')
+            console.log(res.data);
+        })
+        .catch(console.error)
+    });
  
     const onSubmit = useCallback(async ()=>{
         if(pw !== pwCheck) return setPwError(true);
@@ -55,11 +73,12 @@ const SignUp = () => {
         console.log(id,pw,pwCheck,term,nick)
         await axios({
             method: 'post',
-            url: 'http://localhost:3065/user',
+            url: 'http://localhost:3065/user/signup',
             data: {
-                email: id,
+                userid: id,
                 password: pw,
                 nickname: nick,
+                phoneNumber: pn,
             }
         })
         .then((res)=>{
@@ -90,6 +109,11 @@ const SignUp = () => {
                     <Input name="user-pw" type="password" value={pw} required onChange={onChangePw} />
                 </div>
                 <div>
+                    <label htmlFor="user-pn">phone number</label>
+                    <br/>
+                    <Input name="user-pn" value={pn} required onChange={onChangePn} />
+                </div>
+                <div>
                     <label htmlFor="user-pw-check">pwCheck</label>
                     <br/>
                     <Input 
@@ -110,6 +134,9 @@ const SignUp = () => {
                 </div>
                 <div>
                     <Button type="primary" onClick={()=>getUser()}>test</Button>
+                </div>
+                <div>
+                    <Button type="primary" onClick={()=>loginUser()}>test2</Button>
                 </div>
             </Form>
             </AppLayout>
