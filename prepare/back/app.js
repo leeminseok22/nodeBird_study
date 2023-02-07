@@ -18,7 +18,7 @@ app.use(cors());
 
 
 db.sequelize.sync(
-    // { force: true }
+    //{ force: true }
     )
     .then(() => {
       console.log("Drop and re-sync db.");

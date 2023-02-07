@@ -71,7 +71,15 @@ router.post('/signup', async (req, res, next)=>{
             userColor: 0,
             victory: 0
     })
-    res.status(201).send('ok')
+    const userInfo = await User.findOne({
+        where: {
+            userid: req.body.userid
+        },
+        attributes:{
+            exclude: ['password']
+        },
+    })
+    res.status(201).json(userInfo)
     } catch (error) { 
         console.error(error);
         next(error);
