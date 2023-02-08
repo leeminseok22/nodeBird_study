@@ -87,4 +87,19 @@ router.post('/signup', async (req, res, next)=>{
     }
 });
 
+router.patch('/color/:id', async (req, res, next)=>{
+    try{
+        const result = await User.update({
+            userColor: req.body.userColor,
+        },{
+            where: { id: req.params.id },
+        });
+        //if(!result) return res.status(403).json('fail');
+        res.status(200).json('ok');
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+});
+
 module.exports = router;
