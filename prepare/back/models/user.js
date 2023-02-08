@@ -20,13 +20,17 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         victory: {
-            type: DataTypes.INTEGER(100),
+            type: DataTypes.INTEGER(255),
             allowNull: false,
         },
         userColor: {
-            type: DataTypes.INTEGER(100),
+            type: DataTypes.INTEGER(5),
             allowNull: false,
         },
+        record: {
+            type: DataTypes.INTEGER(255),
+            allowNull: false,
+        }
     }, {
         charset: 'utf8mb4',
         collate: 'utf8mb4_general_ci',

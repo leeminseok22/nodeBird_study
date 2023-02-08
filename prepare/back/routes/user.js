@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', async (req, res, next)=>{
     try {
         const userList = await User.findAll({
-            attributes: ['nickname', 'userid', 'password'],
+            attributes: ['nickname', 'userid'],
         })
         res.status(201).send(userList);
     } catch(error) {
@@ -69,7 +69,8 @@ router.post('/signup', async (req, res, next)=>{
             password: hashedPassword,
             phoneNumber: req.body.phoneNumber,
             userColor: 0,
-            victory: 0
+            victory: 0,
+            record: 0,
     })
     const userInfo = await User.findOne({
         where: {
