@@ -87,10 +87,40 @@ router.post('/signup', async (req, res, next)=>{
     }
 });
 
-router.patch('/color/:id', async (req, res, next)=>{
+router.patch('/record/:id', async (req, res, next)=>{
     try{
         const result = await User.update({
             userColor: req.body.userColor,
+        },{
+            where: { id: req.params.id },
+        });
+        //if(!result) return res.status(403).json('fail');
+        res.status(200).json('ok');
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+});
+
+router.patch('/victory/:id', async (req, res, next)=>{
+    try{
+        const result = await User.update({
+            victory: req.body.victory,
+        },{
+            where: { id: req.params.id },
+        });
+        //if(!result) return res.status(403).json('fail');
+        res.status(200).json('ok');
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+});
+
+router.patch('/record/:id', async (req, res, next)=>{
+    try{
+        const result = await User.update({
+            victory: req.body.record,
         },{
             where: { id: req.params.id },
         });

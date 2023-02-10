@@ -38,6 +38,6 @@ app.use('/post', postRouter);
 
 app.use('/user', userRouter);
 
-app.listen(3065, ()=>{
+app.listen(80, ()=>{
     console.log('run run');
 })
